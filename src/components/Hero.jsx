@@ -1,96 +1,18 @@
 import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
 import gsap from 'gsap';
 import { Typewriter } from 'react-simple-typewriter';
-import awsImg from '../assets/aws_processed.png';
 import myImg from '../assets/my.png';
 
 export default function Hero() {
-  const mountRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // 1. Setup Three.js Scene
-    const scene = new THREE.Scene();
-    
-    // Camera
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // optimize mobile
-    if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement);
-    }
-
-    // Load AWS Logo Texture
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(awsImg);
-    
-    // Geometry: 3D Plane for the AWS Logo
-    const geometry = new THREE.PlaneGeometry(3.5, 3.5); // size
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      transparent: true,
-      opacity: 0.9,
-      side: THREE.DoubleSide
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
-    // Mouse interation variables
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    const windowHalfX = window.innerWidth / 2;
-    const windowHalfY = window.innerHeight / 2;
-
-    const onDocumentMouseMove = (event) => {
-      // Disable on touch devices natively via css/js check, but here checking width
-      if (window.innerWidth < 768) return; 
-      mouseX = (event.clientX - windowHalfX) * 0.001;
-      mouseY = (event.clientY - windowHalfY) * 0.001;
-    };
-
-    document.addEventListener('mousemove', onDocumentMouseMove);
-
-    // Animation Loop
-    const renderScene = () => {
-      targetX = mouseX * 0.5;
-      targetY = mouseY * 0.5;
-
-      // Floating & Parallax Tilt Effect
-      mesh.rotation.x += (targetY - mesh.rotation.x) * 0.05;
-      mesh.rotation.y += (targetX - mesh.rotation.y) * 0.05;
-      mesh.position.y = Math.sin(Date.now() * 0.0015) * 0.2;
-
-      renderer.render(scene, camera);
-    };
-
-    // Use WebGLRenderer.setAnimationLoop for better performance
-    renderer.setAnimationLoop(renderScene);
-
-    // Resize Handler
-    const onWindowResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', onWindowResize);
-
-    // 2. Setup GSAP Text Animations
+    // GSAP Text Animations
     const ctx = gsap.context(() => {
-      // Fade in 3D canvas separately
-      gsap.fromTo(mountRef.current, { opacity: 0 }, { opacity: 1, duration: 2, delay: 1, ease: 'power2.out' });
-
       gsap.fromTo(
         '.hero-el',
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.12, delay: 1.5, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 1, stagger: 0.12, delay: 0.5, ease: 'power3.out' }
       );
 
       // Continuous floating animation for the profile image
@@ -100,35 +22,18 @@ export default function Hero() {
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut',
-        delay: 2.5
+        delay: 1.5
       });
     }, containerRef);
 
     // Cleanup
     return () => {
-      document.removeEventListener('mousemove', onDocumentMouseMove);
-      window.removeEventListener('resize', onWindowResize);
-      renderer.setAnimationLoop(null);
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
-      }
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
       ctx.revert();
     };
   }, []);
 
-
-
   return (
     <section id="hero" ref={containerRef} className="relative w-full h-[100dvh] overflow-hidden bg-obsidian text-white flex items-end pb-20 md:pb-32 px-6 md:px-16">
-      
-      {/* 3D Background */}
-      <div 
-        ref={mountRef} 
-        className="absolute inset-0 z-0 opacity-0 pointer-events-none" 
-      />
       
       {/* Gradient Overlay bottom-to-top */}
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent pointer-events-none" />
@@ -146,7 +51,7 @@ export default function Hero() {
             Engineering <br/> 
             <span className="text-champagne italic">
               <Typewriter
-                words={['Digital Resilience', 'Scalable Systems', 'Cloud Architectures']}
+                words={['Digital Resilience', 'Scalable Systems', 'Cloud Architectures','Backend Engg','DevOps','Full Stack']}
                 loop={0}
                 cursor
                 cursorStyle='|'
