@@ -59,26 +59,3 @@ body::after {
   scrollbar-width: none;
   /* Firefox */
 }
-
-/* Global Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #080810;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #1E1E2E;
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #C9A84C;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #1E1E2E #080810;
-}
