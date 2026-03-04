@@ -119,11 +119,7 @@ export default function Hero() {
     };
   }, []);
 
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+
 
   return (
     <section id="hero" ref={containerRef} className="relative w-full h-[100dvh] overflow-hidden bg-obsidian text-white flex items-end pb-20 md:pb-32 px-6 md:px-16">
@@ -167,12 +163,13 @@ export default function Hero() {
           
           <div className="hero-el mt-8 pt-4">
             <a
-              href="#contact"
-              onClick={scrollToContact}
+              href="[INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE]"
+              target="_blank"
+              rel="noreferrer"
               data-cursor="interactive"
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-champagne text-obsidian rounded-full font-mono text-sm tracking-widest font-bold overflow-hidden transition-transform duration-300 hover:scale-[1.03]"
             >
-              <span className="relative z-10">VIEW SYSTEM ARCHITECTURE</span>
+              <span className="relative z-10">DOWNLOAD CV</span>
               <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
             </a>
           </div>
