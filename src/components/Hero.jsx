@@ -163,7 +163,7 @@ export default function Hero() {
           
           <div className="hero-el mt-8 pt-4">
             <a
-              href="[INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE]"
+              href="https://drive.google.com/file/d/1gxVMky6WeRPBfELyTVDn0k1mi4UwV3-q/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
               data-cursor="interactive"
