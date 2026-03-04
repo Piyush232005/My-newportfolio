@@ -11,18 +11,23 @@
 }
 
 /* Lenis Smooth Scroll Setup */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
@@ -47,9 +52,12 @@ body::after {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Global Custom Scrollbar */
@@ -58,18 +66,19 @@ body::after {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-obsidian;
+  background-color: #080810;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full;
+  background-color: #1E1E2E;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-champagne;
+  background-color: #C9A84C;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #334155 #05050A; /* slate-700 and obsidian */
+  scrollbar-color: #1E1E2E #080810;
 }
