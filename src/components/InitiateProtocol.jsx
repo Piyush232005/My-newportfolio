@@ -115,7 +115,7 @@ export default function InitiateProtocol() {
           </button>
 
           <a
-            href="https://drive.google.com/your-cv-link-here"
+            href="https://drive.google.com/file/d/1gxVMky6WeRPBfELyTVDn0k1mi4UwV3-q/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="action-btn group px-8 py-4 border border-emerald-500/30 text-emerald-400 hover:text-white hover:border-white hover:bg-white/5 rounded-none font-mono text-sm tracking-widest font-bold transition-all"
